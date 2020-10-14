@@ -5,8 +5,6 @@ import * as utils from './utils.mjs'
 import * as gmailUtils from './gmail/gmail_api_sample.mjs'
 import sendgrid from '@sendgrid/mail'
 
-sendEmail()
-
 /*
  * Runs per 30 minutes between 8pm - 1am on every weekday
  */
@@ -17,9 +15,9 @@ cron.schedule('*/30 20-23,0-1 * * 1,2,3,4,5', () => {
 /* 
  * Runs at 11:58pm on every weekday
  */
-// cron.schedule('58 23 * * 1,2,3,4,5', () => {
-//   sendEmail()
-// });
+cron.schedule('58 23 * * 1,2,3,4,5', () => {
+  sendEmail()
+});
 
 async function sendEmail(){
     sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
