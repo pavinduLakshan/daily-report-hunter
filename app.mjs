@@ -13,9 +13,9 @@ cron.schedule('*/30 20-23,0-1 * * 1,2,3,4,5', () => {
 });
 
 /* 
- * Runs at 11:58pm on every weekday
+ * Runs at 11:58pm (1825h USA time) on every weekday
  */
-cron.schedule('58 23 * * 1,2,3,4,5', () => {
+cron.schedule('25 18 * * 1,2,3,4,5', () => {
   sendEmail()
 });
 
