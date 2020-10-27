@@ -2,15 +2,9 @@ import dotenv from 'dotenv'
 dotenv.config()
 import cron from 'node-cron'
 import * as utils from './utils.mjs'
+import http from 'http'
 import * as gmailUtils from './gmail/gmail_api_sample.mjs'
 import sendgrid from '@sendgrid/mail'
-
-/*
- * Runs per 30 minutes between 8pm - 1am on every weekday
- */
-cron.schedule('*/30 20-23,0-1 * * 1,2,3,4,5', () => {
-  console.log("Keeping the app alive...")
-});
 
 /* 
  * Runs at 11:58pm (1825h USA time) on every weekday
@@ -42,3 +36,11 @@ async function sendEmail(){
         }
      )
 }
+
+const requestListener = function (req, res) {
+  res.writeHead(200);
+  res.end('Hello, World!');
+}
+
+const server = http.createServer(requestListener);
+server.listen(8080);
